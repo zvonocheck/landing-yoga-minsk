@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Возрождение культуры</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..700;1,9..144,400..600&family=Caveat:wght@500;600;700&family=Comfortaa:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Layout concept: an airy, asymmetric "breath" layout — soft radiant blobs echo the
+     logo's circular mandala, long-form serif headlines sit beside crisp sans UI,
+     sections breathe with generous whitespace instead of boxed cards everywhere. */
+  :root{
+    --bg:#fbfaf4;
+    --surface:#ffffff;
+    --surface-2:#f1f6ea;
+    --ink:#17302a;
+    --muted:#5c6f67;
+    --line:#e1e8dd;
+    --teal:#2bb6ab;
+    --teal-deep:#0f8277;
+    --lime:#a9d75e;
+    --lime-deep:#74a832;
+    --lime-soft:#eaf5d8;
+    --gold:#f6d875;
+    --sky:#8fd6d8;
+    --shadow: 0 20px 50px -24px rgba(15,60,50,.28);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1815;
+      --surface:#142420;
+      --surface-2:#182a24;
+      --ink:#eef5ee;
+      --muted:#a9bdb5;
+      --line:#223a33;
+      --teal:#5fcabf;
+      --teal-deep:#8fe0d6;
+      --lime:#a7dc5c;
+      --lime-deep:#c3ec8a;
+      --lime-soft:#1c3327;
+      --gold:#e3c15f;
+      --sky:#6fb7ba;
+      --shadow: 0 20px 50px -22px rgba(0,0,0,.6);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1815;
+    --surface:#142420;
+    --surface-2:#182a24;
+    --ink:#eef5ee;
+    --muted:#a9bdb5;
+    --line:#223a33;
+    --teal:#5fcabf;
+    --teal-deep:#8fe0d6;
+    --lime:#a7dc5c;
+    --lime-deep:#c3ec8a;
+    --lime-soft:#1c3327;
+    --gold:#e3c15f;
+    --sky:#6fb7ba;
+    --shadow: 0 20px 50px -22px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding-inline:0; background:var(--bg); color:var(--ink);
+    font-family:'Manrope',system-ui,sans-serif; font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp{ font-family:'Fraunces',Georgia,serif; text-wrap:balance; letter-spacing:-.01em; line-height:1.2; margin:0; }
+  p{margin:0}
+  img{max-width:100%; display:block}
+  a{color:inherit}
+  .wrap{ max-width:1180px; margin-inline:auto; padding-inline:20px; }
+  .eyebrow{
+    font:700 12.5px/1 'Manrope',sans-serif; text-transform:uppercase; letter-spacing:.14em;
+    color:var(--teal-deep); display:inline-flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:"";width:18px;height:2px;background:var(--lime);border-radius:2px;display:inline-block}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font:700 14.5px/1 'Manrope',sans-serif; letter-spacing:.01em; text-decoration:none;
+    padding:14px 26px; border-radius:999px; border:1px solid transparent; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:active{ transform:scale(.97) }
+  .btn-primary{ background:linear-gradient(120deg,var(--lime),var(--teal)); color:#0d2b25; box-shadow:var(--shadow); }
+  .btn-primary:hover{ box-shadow:0 22px 55px -18px rgba(90,190,160,.55); filter:brightness(1.04); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal-deep); }
+
+  /* header */
+  header{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+  .brand{ display:flex; align-items:center; gap:18px; text-decoration:none; }
+  .brand img{ width:68px; height:68px; border-radius:50%; object-fit:cover; object-position:left center; }
+  .brand-text{ font-family:'Caveat',cursive; font-weight:600; font-size:27px; line-height:1.2; color:var(--teal-deep); max-width:320px; }
+  .brand-name{ display:block; white-space:nowrap; }
+  .brand-kicker{ display:block; font-family:'Manrope',sans-serif; font-weight:700; font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--teal-deep); line-height:1.35; margin-bottom:4px; white-space:nowrap; }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .nav-phone{ font:700 14.5px/1 'Manrope',sans-serif; color:var(--ink); text-decoration:none; white-space:nowrap; }
+  .burger{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    width:38px; height:38px; background:none; border:1px solid var(--line); border-radius:10px;
+    cursor:pointer; padding:0; flex:none;
+  }
+  .burger span{ display:block; width:18px; height:2px; background:var(--ink); border-radius:2px; margin-inline:auto; transition:transform .2s ease, opacity .2s ease; }
+  .burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  .nav-bottom{
+    display:flex; justify-content:center; border-top:1px solid var(--line);
+    padding-block:12px;
+  }
+  .links{ display:flex; gap:32px; list-style:none; margin:0; padding:0; }
+  .links a{ font:600 14px/1 'Manrope',sans-serif; text-decoration:none; color:var(--muted); white-space:nowrap; }
+  .links a:hover{ color:var(--teal-deep); }
+
+  /* hero */
+  .hero{ position:relative; overflow:hidden; padding-block:76px 90px; }
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:url('images/hero-bg.jpg'); background-size:cover; background-position:center 30%;
+    opacity:.75;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:linear-gradient(180deg, transparent 0%, var(--bg) 96%);
+  }
+  .hero-grid{
+    position:relative; z-index:1; display:grid;
+    grid-template-columns:1.1fr .9fr; grid-template-areas:"head head" "text art";
+    column-gap:56px; row-gap:34px;
+  }
+  .hero-head{ grid-area:head; text-align:center; }
+  .hero-text{ grid-area:text; align-self:center; text-align:center; }
+  .hero-art{ grid-area:art; align-self:center; }
+  .hero h1{
+    font-family:'Comfortaa',sans-serif; font-style:normal; font-size:clamp(28px,3.6vw,42px); font-weight:300;
+    line-height:1.25; letter-spacing:0; color:var(--teal-deep); margin-block:16px 20px;
+    width:100%;
+  }
+  .hero h1 em{ font-style:normal; font-weight:400; color:var(--lime-deep); }
+  .hero p.lead{ max-width:52ch; margin-inline:auto; color:var(--muted); font-size:17.5px; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:30px; }
+  .hero-stats{ display:flex; gap:34px; margin-top:46px; flex-wrap:wrap; justify-content:center; text-align:center; }
+  .hero-stats .stat{ display:flex; flex-direction:column; align-items:center; }
+  .stat b{ font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--teal-deep); display:block; }
+  .stat b.text{ font-size:17px; font-weight:600; max-width:15ch; line-height:1.25; }
+  .stat span{ font-size:12.5px; color:var(--muted); max-width:19ch; display:block; margin-top:4px; }
+
+  .hero-art{ position:relative; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; }
+  .hero-logo-card{
+    position:relative; z-index:2;
+    width:78%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+  }
+  .hero-logo-card img{
+    width:100%; aspect-ratio:1/1; border-radius:50%; object-fit:cover; object-position:left center;
+    filter:drop-shadow(0 18px 30px rgba(15,60,50,.22));
+  }
+
+  section{ padding-block:72px; }
+  .section-head{ max-width:62ch; margin-bottom:40px; }
+  .section-head h2{ font-size:clamp(26px,3.2vw,38px); font-weight:500; margin-top:12px; }
+  .section-head p{ color:var(--muted); margin-top:12px; font-size:16px; }
+  .section-head.center{ margin-inline:auto; text-align:center; }
+
+  /* philosophy */
+  .philo{ background:var(--surface-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .philo-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; align-items:start; }
+  .philo blockquote{ font-family:'Fraunces',serif; font-style:italic; font-size:clamp(22px,2.6vw,30px); font-weight:400; color:var(--teal-deep); margin:0 0 16px; line-height:1.3; }
+  .philo-cite{ font:700 12.5px/1 'Manrope',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .philo-list{ display:grid; gap:20px; }
+  .philo-item{ display:flex; gap:16px; }
+  .philo-num{ font-family:'Fraunces',serif; font-size:22px; color:var(--lime-deep); font-weight:600; flex:none; width:34px; }
+  .philo-item h3{ font-size:16.5px; font-weight:700; font-family:'Manrope',sans-serif; margin-bottom:6px; }
+  .philo-item p{ color:var(--muted); font-size:15px; }
+
+  /* programs */
+  .programs-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .pcard{
+    position:relative; background:var(--surface); border:1px solid var(--line); border-radius:22px;
+    padding:28px 22px 26px; display:flex; flex-direction:column; gap:14px; min-width:0;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .pcard::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:5px;
+    border-radius:22px 22px 0 0; background:linear-gradient(90deg,var(--lime),var(--teal));
+  }
+  .pcard:hover{ border-color:var(--teal); transform:translateY(-3px); }
+  .pcard h3{ font-family:'Manrope',sans-serif; font-size:17px; font-weight:700; }
+  .pcard p{ color:var(--muted); font-size:14.5px; }
+  .pcard .tag{ margin-top:auto; font:700 12px/1 'Manrope',sans-serif; color:var(--teal-deep); display:flex; align-items:center; gap:6px; }
+
+  /* events strip */
+  .events{ background:linear-gradient(120deg,var(--teal-deep),var(--teal)); color:#fff; border-radius:28px; overflow:hidden; position:relative; }
+  .events::after{ content:""; position:absolute; right:-10%; top:-30%; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,var(--lime) 0%,transparent 70%); opacity:.35; }
+  .events-in{ position:relative; z-index:1; padding:46px 44px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; }
+  .events h2{ color:#fff; font-size:clamp(24px,3vw,32px); font-weight:500; }
+  .events p{ color:rgba(255,255,255,.85); margin-top:12px; max-width:60ch; }
+  .events-facts{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .efact{ background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22); border-radius:16px; padding:16px 18px; }
+  .efact b{ font-family:'Fraunces',serif; font-size:17px; font-weight:600; display:block; }
+  .efact span{ font-size:12.5px; color:rgba(255,255,255,.78); }
+
+  /* pricing */
+  .price-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .price-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:28px 24px;
+    display:flex; flex-direction:column; min-width:0;
+  }
+  .price-card.featured{ border-color:var(--teal); box-shadow:var(--shadow); position:relative; }
+  .price-card.featured::before{
+    content:"Популярное"; position:absolute; top:-12px; left:24px; background:var(--lime); color:var(--teal-deep);
+    font:800 11px/1 'Manrope',sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:6px 12px; border-radius:999px;
+  }
+  .price-card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:16px; }
+  .price-card .amount{ font-family:'Fraunces',serif; font-size:38px; font-weight:600; color:var(--teal-deep); margin-top:14px; }
+  .price-card .amount sub{ font:600 13px/1 'Manrope',sans-serif; color:var(--muted); vertical-align:middle; }
+  .price-card .meta{ color:var(--muted); font-size:13.5px; margin-top:4px; }
+  .price-card hr{ border:none; border-top:1px solid var(--line); margin:18px 0; }
+  .price-card ul{ list-style:none; margin:0; padding:0; display:grid; gap:10px; font-size:14px; color:var(--ink); flex:1; }
+  .price-card li{ display:flex; gap:9px; }
+  .price-card li::before{ content:"✓"; color:var(--teal); font-weight:800; flex:none; }
+  .price-note{ color:var(--muted); font-size:13.5px; margin-top:22px; }
+
+  /* schedule */
+  .schedule-grid{ display:grid; gap:14px; }
+  .sched-row{
+    display:grid; grid-template-columns:1.4fr .9fr 1fr; gap:16px; align-items:center;
+    background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px 22px;
+  }
+  .sched-name{ font-family:'Manrope',sans-serif; font-weight:700; font-size:15.5px; }
+  .sched-name span{ display:block; font-weight:600; font-size:12.5px; color:var(--teal-deep); margin-top:2px; }
+  .sched-days{ font-size:14px; color:var(--muted); }
+  .sched-time{ font-family:'Fraunces',serif; font-weight:600; font-size:17px; color:var(--teal-deep); text-align:right; }
+
+  /* locations */
+  .loc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .loc-card{ background:var(--surface-2); border-radius:18px; padding:20px 18px; border:1px solid var(--line); }
+  .loc-card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:15px; }
+  .loc-card p{ color:var(--muted); font-size:13.5px; margin-top:6px; }
+
+  /* cta / contact */
+  .contact{ background:var(--surface-2); border-top:1px solid var(--line); }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  .contact h2{ font-size:clamp(26px,3vw,36px); font-weight:500; }
+  .contact-phones{ display:grid; gap:14px; margin-top:26px; }
+  .phone-row{ display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; }
+  .phone-row span.city{ font-weight:700; }
+  .phone-row span.nums{ color:var(--muted); text-align:right; }
+  .contact-card{ background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:30px; box-shadow:var(--shadow); }
+  .field{ display:grid; gap:6px; margin-bottom:16px; }
+  .field label{ font:700 12px/1 'Manrope',sans-serif; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+  .field input, .field select, .field textarea{
+    font:500 15px/1.4 'Manrope',sans-serif; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+    background:var(--bg); color:var(--ink); width:100%;
+  }
+  .field textarea{ resize:vertical; min-height:80px; }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:2px solid var(--teal); outline-offset:1px; }
+
+  footer{ padding-block:40px; border-top:1px solid var(--line); }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .foot-brand{ display:flex; align-items:center; gap:12px; }
+  .foot-brand img{ width:34px; height:34px; border-radius:50%; object-fit:cover; object-position:left center; }
+  .foot-links{ display:flex; gap:20px; flex-wrap:wrap; list-style:none; margin:0; padding:0; }
+  .foot-links a{ font-size:13.5px; color:var(--muted); text-decoration:none; }
+  .foot-links a:hover{ color:var(--teal-deep); }
+  .copy{ font-size:12.5px; color:var(--muted); }
+
+  .toast{
+    position:fixed; left:50%; bottom:24px; transform:translate(-50%,140%); z-index:200;
+    background:var(--teal-deep); color:#fff; padding:12px 20px; border-radius:999px; font:700 13.5px/1 'Manrope',sans-serif;
+    box-shadow:var(--shadow); transition:transform .25s ease;
+  }
+  .toast.show{ transform:translate(-50%,0); }
+
+  @media (max-width:980px){
+    .burger{ display:flex; }
+    .nav-bottom{
+      display:none; position:absolute; top:100%; left:0; right:0; z-index:49;
+      background:var(--surface); border-top:1px solid var(--line); box-shadow:var(--shadow);
+      padding-block:8px;
+    }
+    .nav-bottom.open{ display:flex; }
+    .links{ flex-direction:column; gap:2px; width:100%; }
+    .links a{ display:block; padding:13px 20px; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ max-width:320px; margin-inline:auto; }
+    .philo-grid{ grid-template-columns:1fr; }
+    .programs-grid{ grid-template-columns:repeat(2,1fr); }
+    .price-grid{ grid-template-columns:repeat(2,1fr); }
+    .loc-grid{ grid-template-columns:repeat(2,1fr); }
+    .events-in{ grid-template-columns:1fr; padding:36px 26px; }
+    .contact-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .programs-grid{ grid-template-columns:1fr; }
+    .price-grid{ grid-template-columns:1fr; }
+    .loc-grid{ grid-template-columns:1fr; }
+    .hero-stats{ gap:22px; }
+    .nav-phone{ display:none; }
+    .sched-row{ grid-template-columns:1fr; gap:4px; }
+    .sched-time{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="images/logo.png" alt="Возрождение культуры">
+      <span class="brand-text"><span class="brand-kicker">Школа йоги и гармоничного развития человека</span><span class="brand-name">«Возрождение культуры»</span></span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+375293462286">+375 29 346‑22‑86</a>
+      <a class="btn btn-primary" href="#contact" style="padding:11px 20px;font-size:13.5px">Записаться</a>
+      <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="navBottom">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="wrap nav-bottom" id="navBottom">
+    <ul class="links">
+      <li><a href="#about">О школе</a></li>
+      <li><a href="#programs">Направления</a></li>
+      <li><a href="#schedule">Расписание</a></li>
+      <li><a href="#price">Стоимость</a></li>
+      <li><a href="#locations">Отделения</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-head">
+        <h1>Хочешь изменить мир —<br><em>измени себя!</em></h1>
+      </div>
+      <div class="hero-text">
+        <p class="lead">Школа йоги и гармоничного развития человека «Возрождение культуры». Заниматься йогой может любой человек, независимо от возраста, вероисповедания, социальной принадлежности — в основе мировоззрения Школы лежит классический труд по йоге «Йога-сутра» Шримада Патанджали.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contact">Записаться на пробное занятие</a>
+          <a class="btn btn-ghost" href="#programs">Смотреть направления</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>37&nbsp;лет</b><span>Школа основана в 1989 году в г. Орша</span></div>
+          <div class="stat"><b>15</b><span>дипломированных инструкторов подготовлено за эти годы</span></div>
+          <div class="stat"><b>3</b><span>отделения в Беларуси: Минск, Орша, Бобруйск</span></div>
+          <div class="stat"><b>18</b><span>Фестивалей йоги с 2008&nbsp;года</span></div>
+          <div class="stat"><b class="text">Международные фестивали</b><span>команда Школы участвует в турнирах и фестивалях йоги</span></div>
+          <div class="stat"><b class="text">Городские мероприятия</b><span>проведение и участие в мероприятиях за здоровый образ жизни</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-logo-card"><img src="images/logo.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="philo" id="about">
+    <div class="wrap philo-grid">
+      <div>
+        <span class="eyebrow">Йога без ограничений</span>
+        <h2 style="margin-top:12px;font-size:clamp(24px,2.8vw,32px)">в Минске, Орше и Бобруйске</h2>
+        <p style="color:var(--muted);margin-top:16px;font-size:15.5px">В основе мировоззрения Школы йоги и гармоничного развития человека «Возрождение культуры» лежит классический труд по йоге «Йога-сутра» Шримада Патанджали. Программа Школы рассчитана на 4 года обучения. Также есть формат «Группа здоровья» — занятия дважды в неделю для всех желающих поддерживать себя в форме.</p>
+        <p style="color:var(--muted);margin-top:14px;font-size:15.5px">Обучение строится по принципу «от простого к сложному».</p>
+        <a class="btn btn-primary" href="#contact" style="margin-top:26px">Записаться на занятия</a>
+      </div>
+      <div class="philo-list">
+        <div class="philo-item">
+          <span class="philo-num">01</span>
+          <div><h3>Способ гармоничного развития человека</h3><p>Йога — это известный с давних времён способ гармоничного развития человека, дающий человеку силы и возможности реализоваться в жизни, независимо от места и времени, в которое он родился.</p></div>
+        </div>
+        <div class="philo-item">
+          <span class="philo-num">02</span>
+          <div>
+            <h3>Занятия включают в себя</h3>
+            <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:4px">
+              <li>освоение специализированных гимнастик</li>
+              <li>освоение комплексов асан и пранаям</li>
+              <li>самомассажи</li>
+              <li>очистительные и оздоровительные процедуры</li>
+              <li>терапии</li>
+              <li>медитативные практики</li>
+              <li>познание причинно-следственных связей и Законов Природы</li>
+            </ul>
+          </div>
+        </div>
+        <div class="philo-item">
+          <span class="philo-num">03</span>
+          <div><h3>Практика классической йоги доступна каждому без ограничений</h3><p>Заниматься йогой может любой человек, независимо от возраста, вероисповедания, социальной принадлежности. Йога не ограничивает людей в жизни, а помогает почувствовать себя бодрыми и здоровыми, решить насущные для каждого семейные и социальные проблемы, понять своё предназначение в жизни.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Направления</span>
+        <h2>Йога</h2>
+        <p>Занятия проходят в небольших группах с опытными инструкторами и индивидуальным подходом к каждому ученику.</p>
+      </div>
+      <div class="programs-grid">
+        <div class="pcard">
+          <h3>Йога для начинающих</h3>
+          <p>Йога — это известный с давних времён способ гармоничного развития человека, дающий человеку силы и возможности реализоваться в жизни, независимо от места и времени, в которое он родился. Йога — природная наука, помогающая избавиться от многих современных заболеваний и дать возможность духовного гармоничного развития. Предлагаем групповые занятия йогой для любых возрастных категорий, для людей с любыми ограничениями и болезнями, беременным и женщинам после родов и т.д.</p>
+          <span class="tag">130 руб / мес →</span>
+        </div>
+        <div class="pcard">
+          <h3>Йога для беременных</h3>
+          <p>Курс «Гармоничная беременность» построен так, чтобы помочь укрепить и настроить организм женщины. Поэтому, когда приходит время рожать, женщина к этому готова физически и психологически. А когда человек готов, то всё у него получается легко и естественно. Счастливая беременность и благополучные роды — это дают занятия йогой. Носить в себе два сердца — это честь, большое счастье и ответственность.</p>
+          <span class="tag">140 руб / мес →</span>
+        </div>
+        <div class="pcard">
+          <h3>Йога для детей</h3>
+          <p>Физкультурно-оздоровительное направление йоги является основным в занятиях с детскими группами. Оно включает профилактику ОРЗ, сколиоза, плоскостопия, нарушений зрения, желудочно-кишечного тракта, а также укрепление всех систем организма и направлено на общеукрепляющее развитие детей...</p>
+          <span class="tag">60 руб / мес →</span>
+        </div>
+        <div class="pcard">
+          <h3>Йога для мамы и ребёнка</h3>
+          <p>Курс «Йога для мамы с ребёнком» построен так, чтобы дать возможность женщинам с маленькими детьми заниматься оздоровлением своего организма и не в ущерб интересам ребёнка. Для мам проводится занятие, в это время дети рядом под присмотром второго инструктора, который организовывает занятия для детей в игровой форме. При желании обеих сторон (мамы и ребёнка) отводится время для совместных занятий (10–15 минут).</p>
+          <span class="tag">140 руб / мес →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="events">
+        <div class="events-in">
+          <div>
+            <span class="eyebrow" style="color:rgba(255,255,255,.85)">Фестиваль Йоги · ежегодно с 2008 года</span>
+            <h2 style="margin-top:14px">События</h2>
+            <p>Школа проводит фестивали йоги, литературно-музыкальные гостиные, салоны и балы, а также занятия по вокалу и классической хореографии — для того, чтобы человек развивался многогранно и открывал в себе новые возможности. Культура человека растёт вместе с его кругозором, трудолюбием и уважением к своему творческому труду и труду в кругу единомышленников.</p>
+            <a class="btn btn-primary" href="#contact" style="margin-top:22px;background:#fff;color:var(--teal-deep)">Узнать о ближайших событиях</a>
+          </div>
+          <div class="events-facts">
+            <div class="efact"><b>Фестивали</b><span>йоги, ежегодно с 2008 года</span></div>
+            <div class="efact"><b>Балы</b><span>учебные балы и карнавалы</span></div>
+            <div class="efact"><b>Музыкально-поэтические гостиные</b><span>салоны и творческие вечера</span></div>
+            <div class="efact"><b>Народные праздники</b><span>фольклорные традиции</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Расписание</span>
+        <h2 style="font-size:clamp(20px,2.1vw,26px);white-space:nowrap">Когда можно присоединиться к занятиям</h2>
+        <p>Минск: расписание групп йоги для начинающих и классической йоги.</p>
+      </div>
+      <div class="schedule-grid">
+        <div class="sched-row">
+          <div class="sched-name">Йога для начинающих<span>«Группа здоровья» №1</span></div>
+          <div class="sched-days">Понедельник, среда</div>
+          <div class="sched-time">19:00–20:30</div>
+        </div>
+        <div class="sched-row">
+          <div class="sched-name">Йога для начинающих<span>«Группа здоровья» №2</span></div>
+          <div class="sched-days">Вторник, пятница</div>
+          <div class="sched-time">17:30–19:00</div>
+        </div>
+        <div class="sched-row">
+          <div class="sched-name">Классическая йога</div>
+          <div class="sched-days">Среда</div>
+          <div class="sched-time">19:00–21:30</div>
+        </div>
+        <div class="sched-row">
+          <div class="sched-name">Классическая йога</div>
+          <div class="sched-days">Четверг</div>
+          <div class="sched-time">9:00–11:30</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Стоимость</span>
+        <h2>Абонемент на месяц, Минск</h2>
+        <p>Для Орши и Бобруйска стоимость уточняйте по телефону отделения — она отличается от минской.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card featured">
+          <h3>Йога для начинающих</h3>
+          <div class="amount">130 <sub>руб / мес</sub></div>
+          <p class="meta">10–12 часов · 1×2,5 ч или 2×1,5 ч в неделю</p>
+          <hr>
+          <ul>
+            <li>Небольшие группы</li>
+            <li>Зал в центре Минска</li>
+            <li>Опытные инструктора</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Йога для беременных</h3>
+          <div class="amount">140 <sub>руб / мес</sub></div>
+          <p class="meta">8 часов · 1×2 ч или 2×1 ч в неделю</p>
+          <hr>
+          <ul>
+            <li>Практика по триместрам</li>
+            <li>Подготовка к родам</li>
+            <li>Малые группы</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Йога для детей</h3>
+          <div class="amount">60 <sub>руб / мес</sub></div>
+          <p class="meta">4 часа · раз в неделю 1 ч 15 мин</p>
+          <hr>
+          <ul>
+            <li>Игровой формат</li>
+            <li>Развитие концентрации</li>
+            <li>Небольшие группы</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Мама и ребёнок</h3>
+          <div class="amount">140 <sub>руб / мес</sub></div>
+          <p class="meta">8 часов · 1×2 ч или 2×1 ч в неделю</p>
+          <hr>
+          <ul>
+            <li>Совместная практика</li>
+            <li>Безопасные асаны</li>
+            <li>Работают два инструктора</li>
+          </ul>
+        </div>
+      </div>
+      <p class="price-note">Орша: МТС +375 (29) 214‑88‑63 · Бобруйск: +375 (29) 632‑12‑80</p>
+    </div>
+  </section>
+
+  <section id="locations">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Адреса</span>
+        <h2>Отделения школы</h2>
+      </div>
+      <div class="loc-grid">
+        <div class="loc-card"><h3>Минск, центр</h3><p>ул. Тростенецкая, 3, каб. 502а<br>А1 (29) 346‑22‑86 · МТС (33) 357‑78‑56</p></div>
+        <div class="loc-card"><h3>Орша</h3><p>ул. 1 Мая, 41<br>МТС +375 (29) 214‑88‑63</p></div>
+        <div class="loc-card"><h3>Бобруйск</h3><p>ул. Шинная, 13<br>+375 (29) 632‑12‑80, +375 (29) 327‑27‑84</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Контакты</span>
+        <h2>Оставьте телефон — перезвоним и подберём группу</h2>
+        <p style="color:var(--muted);margin-top:12px;max-width:46ch">Расскажите, что вас интересует — инструктор перезвонит и ответит на вопросы о направлении и расписании.</p>
+        <div class="contact-phones">
+          <div class="phone-row"><span class="city">Минск</span><span class="nums">А1 (29) 346‑22‑86 · МТС (33) 357‑78‑56</span></div>
+          <div class="phone-row"><span class="city">Орша</span><span class="nums">ул. 1 Мая, 41 · МТС +375 (29) 214‑88‑63<br>йога для детей: МТС +375 (33) 604‑85‑06</span></div>
+          <div class="phone-row"><span class="city">Бобруйск</span><span class="nums">ул. Шинная, 13 · +375 (29) 632‑12‑80, +375 (29) 327‑27‑84</span></div>
+        </div>
+        <p style="margin-top:18px;font-size:14.5px;color:var(--muted)">Email: <b style="color:var(--ink)">yogaallby@gmail.com</b></p>
+      </div>
+
+      <form class="contact-card" id="leadForm">
+        <div class="field">
+          <label for="f-name">Имя</label>
+          <input id="f-name" name="name" type="text" placeholder="Как можно к вам обратиться" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">Телефон</label>
+          <input id="f-phone" name="phone" type="tel" placeholder="+375 29 ___ __ __" required>
+        </div>
+        <div class="field">
+          <label for="f-topic">Направление</label>
+          <select id="f-topic" name="topic">
+            <option>Классическая йога</option>
+            <option>Йога для детей</option>
+            <option>Йога для беременных</option>
+            <option>Йога для мам с детьми</option>
+            <option>Йога в регионах</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Сообщение</label>
+          <textarea id="f-msg" name="message" placeholder="Коротко о себе и удобном времени"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Отправить заявку</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img src="images/logo.png" alt="">
+      <span style="font-family:'Fraunces',serif;font-weight:600;font-size:14.5px">Возрождение культуры</span>
+    </div>
+    <ul class="foot-links">
+      <li><a href="#about">О школе</a></li>
+      <li><a href="#programs">Направления</a></li>
+      <li><a href="#schedule">Расписание</a></li>
+      <li><a href="#price">Стоимость</a></li>
+      <li><a href="#locations">Отделения</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+    <span class="copy">© Школа йоги «Возрождение культуры», с 1989 года</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Заявка отправлена — мы перезвоним</div>
+
+<script>
+  const form = document.getElementById('leadForm');
+  const toast = document.getElementById('toast');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    toast.classList.add('show');
+    form.reset();
+    setTimeout(()=>toast.classList.remove('show'), 2600);
+  });
+
+  const burger = document.getElementById('burgerBtn');
+  const navBottom = document.getElementById('navBottom');
+  burger.addEventListener('click', ()=>{
+    const isOpen = navBottom.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(isOpen));
+  });
+  navBottom.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      navBottom.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
