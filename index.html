@@ -105,7 +105,8 @@
   .brand-text{ font-family:'Caveat',cursive; font-weight:600; font-size:27px; line-height:1.2; color:var(--teal-deep); max-width:320px; }
   .brand-name{ display:block; white-space:nowrap; }
   .brand-kicker{ display:block; font-family:'Manrope',sans-serif; font-weight:700; font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--teal-deep); line-height:1.35; margin-bottom:4px; white-space:nowrap; }
-  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .nav-right{ display:flex; align-items:center; gap:14px; flex:none; }
+  .nav-cta{ padding:11px 20px; font-size:13.5px; white-space:nowrap; }
   .nav-phone{ font:700 14.5px/1 'Manrope',sans-serif; color:var(--ink); text-decoration:none; white-space:nowrap; }
   .burger{
     display:none; flex-direction:column; justify-content:center; gap:5px;
@@ -294,7 +295,7 @@
     .nav-bottom.open{ display:flex; }
     .links{ flex-direction:column; gap:2px; width:100%; }
     .links a{ display:block; padding:13px 20px; }
-    .hero-grid{ grid-template-columns:1fr; }
+    .hero-grid{ grid-template-columns:1fr; grid-template-areas:"head" "text" "art"; }
     .hero-art{ max-width:320px; margin-inline:auto; }
     .philo-grid{ grid-template-columns:1fr; }
     .programs-grid{ grid-template-columns:repeat(2,1fr); }
@@ -307,10 +308,19 @@
     .programs-grid{ grid-template-columns:1fr; }
     .price-grid{ grid-template-columns:1fr; }
     .loc-grid{ grid-template-columns:1fr; }
-    .hero-stats{ gap:22px; }
+    .hero-stats{ flex-direction:column; align-items:center; gap:26px; }
     .nav-phone{ display:none; }
+    .brand-kicker{ display:none; }
+    .brand{ min-width:0; }
+    .brand img{ width:36px; height:36px; flex:none; }
+    .brand-text{ font-size:14px; min-width:0; }
+    .brand-name{ white-space:normal; }
+    .nav-right{ gap:6px; }
+    .nav-cta{ padding:8px 10px; font-size:11px; }
     .sched-row{ grid-template-columns:1fr; gap:4px; }
     .sched-time{ text-align:left; }
+    .phone-row{ flex-direction:column; align-items:flex-start; gap:4px; }
+    .phone-row span.nums{ text-align:left; }
   }
 </style>
 </head>
@@ -325,7 +335,7 @@
     </a>
     <div class="nav-right">
       <a class="nav-phone" href="tel:+375293462286">+375 29 346‑22‑86</a>
-      <a class="btn btn-primary" href="#contact" style="padding:11px 20px;font-size:13.5px">Записаться</a>
+      <a class="btn btn-primary nav-cta" href="#contact">Записаться</a>
       <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="navBottom">
         <span></span><span></span><span></span>
       </button>
