@@ -4,6 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Возрождение культуры</title>
+<meta name="color-scheme" content="light">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1639140380611600');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..700;1,9..144,400..600&family=Caveat:wght@500;600;700&family=Comfortaa:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,43 +44,7 @@
     --gold:#f6d875;
     --sky:#8fd6d8;
     --shadow: 0 20px 50px -24px rgba(15,60,50,.28);
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0e1815;
-      --surface:#142420;
-      --surface-2:#182a24;
-      --ink:#eef5ee;
-      --muted:#a9bdb5;
-      --line:#223a33;
-      --teal:#5fcabf;
-      --teal-deep:#8fe0d6;
-      --lime:#a7dc5c;
-      --lime-deep:#c3ec8a;
-      --lime-soft:#1c3327;
-      --gold:#e3c15f;
-      --sky:#6fb7ba;
-      --shadow: 0 20px 50px -22px rgba(0,0,0,.6);
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0e1815;
-    --surface:#142420;
-    --surface-2:#182a24;
-    --ink:#eef5ee;
-    --muted:#a9bdb5;
-    --line:#223a33;
-    --teal:#5fcabf;
-    --teal-deep:#8fe0d6;
-    --lime:#a7dc5c;
-    --lime-deep:#c3ec8a;
-    --lime-soft:#1c3327;
-    --gold:#e3c15f;
-    --sky:#6fb7ba;
-    --shadow: 0 20px 50px -22px rgba(0,0,0,.6);
-    color-scheme: dark;
+    color-scheme: light only;
   }
 
   *{box-sizing:border-box}
@@ -104,7 +86,9 @@
   .brand img{ width:68px; height:68px; border-radius:50%; object-fit:cover; object-position:left center; }
   .brand-text{ font-family:'Caveat',cursive; font-weight:600; font-size:27px; line-height:1.2; color:var(--teal-deep); max-width:320px; }
   .brand-name{ display:block; white-space:nowrap; }
-  .brand-kicker{ display:block; font-family:'Manrope',sans-serif; font-weight:700; font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--teal-deep); line-height:1.35; margin-bottom:4px; white-space:nowrap; }
+  .brand-kicker{ font-family:'Manrope',sans-serif; font-weight:700; font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--teal-deep); line-height:1.35; margin-bottom:4px; white-space:nowrap; }
+  .brand-kicker-full{ display:block; }
+  .brand-kicker-short{ display:none; }
   .nav-right{ display:flex; align-items:center; gap:14px; flex:none; }
   .nav-cta{ padding:11px 20px; font-size:13.5px; white-space:nowrap; }
   .nav-phone{ font:700 14.5px/1 'Manrope',sans-serif; color:var(--ink); text-decoration:none; white-space:nowrap; }
@@ -127,7 +111,7 @@
   .links a:hover{ color:var(--teal-deep); }
 
   /* hero */
-  .hero{ position:relative; overflow:hidden; padding-block:76px 90px; }
+  .hero{ position:relative; overflow:hidden; padding-block:44px 90px; }
   .hero::before{
     content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
     background-image:url('images/hero-bg.jpg'); background-size:cover; background-position:center 30%;
@@ -295,6 +279,15 @@
     .nav-bottom.open{ display:flex; }
     .links{ flex-direction:column; gap:2px; width:100%; }
     .links a{ display:block; padding:13px 20px; }
+    .brand-kicker-full{ display:none; }
+    .brand-kicker-short{ display:block; font-size:13px; }
+    .brand-name{ font-size:18px; }
+    .brand{ min-width:0; }
+    .brand img{ width:36px; height:36px; flex:none; }
+    .brand-text{ font-size:14px; min-width:0; }
+    .brand-name{ white-space:normal; }
+    .nav-right{ gap:6px; }
+    .nav-cta{ padding:8px 10px; font-size:11px; }
     .hero-grid{ grid-template-columns:1fr; grid-template-areas:"head" "text" "art"; }
     .hero-art{ max-width:320px; margin-inline:auto; }
     .philo-grid{ grid-template-columns:1fr; }
@@ -310,13 +303,6 @@
     .loc-grid{ grid-template-columns:1fr; }
     .hero-stats{ flex-direction:column; align-items:center; gap:26px; }
     .nav-phone{ display:none; }
-    .brand-kicker{ display:none; }
-    .brand{ min-width:0; }
-    .brand img{ width:36px; height:36px; flex:none; }
-    .brand-text{ font-size:14px; min-width:0; }
-    .brand-name{ white-space:normal; }
-    .nav-right{ gap:6px; }
-    .nav-cta{ padding:8px 10px; font-size:11px; }
     .sched-row{ grid-template-columns:1fr; gap:4px; }
     .sched-time{ text-align:left; }
     .phone-row{ flex-direction:column; align-items:flex-start; gap:4px; }
@@ -331,7 +317,11 @@
   <div class="wrap nav">
     <a class="brand" href="#top">
       <img src="images/logo.png" alt="Возрождение культуры">
-      <span class="brand-text"><span class="brand-kicker">Школа йоги и гармоничного развития человека</span><span class="brand-name">«Возрождение культуры»</span></span>
+      <span class="brand-text">
+        <span class="brand-kicker brand-kicker-full">Школа йоги и гармоничного развития человека</span>
+        <span class="brand-kicker brand-kicker-short">Школа йоги</span>
+        <span class="brand-name">«Возрождение культуры»</span>
+      </span>
     </a>
     <div class="nav-right">
       <a class="nav-phone" href="tel:+375293462286">+375 29 346‑22‑86</a>
@@ -567,7 +557,7 @@
       </div>
       <div class="loc-grid">
         <div class="loc-card"><h3>Минск, центр</h3><p>ул. Тростенецкая, 3, каб. 502а<br>А1 (29) 346‑22‑86 · МТС (33) 357‑78‑56</p></div>
-        <div class="loc-card"><h3>Орша</h3><p>ул. 1 Мая, 41<br>МТС +375 (29) 214‑88‑63</p></div>
+        <div class="loc-card"><h3>Орша</h3><p>Ледовая арена, ул. Ленина, 79<br>МТС +375 (29) 214‑88‑63</p></div>
         <div class="loc-card"><h3>Бобруйск</h3><p>ул. Шинная, 13<br>+375 (29) 632‑12‑80, +375 (29) 327‑27‑84</p></div>
       </div>
     </div>
@@ -581,7 +571,7 @@
         <p style="color:var(--muted);margin-top:12px;max-width:46ch">Расскажите, что вас интересует — инструктор перезвонит и ответит на вопросы о направлении и расписании.</p>
         <div class="contact-phones">
           <div class="phone-row"><span class="city">Минск</span><span class="nums">А1 (29) 346‑22‑86 · МТС (33) 357‑78‑56</span></div>
-          <div class="phone-row"><span class="city">Орша</span><span class="nums">ул. 1 Мая, 41 · МТС +375 (29) 214‑88‑63<br>йога для детей: МТС +375 (33) 604‑85‑06</span></div>
+          <div class="phone-row"><span class="city">Орша</span><span class="nums">Ледовая арена, ул. Ленина, 79 · МТС +375 (29) 214‑88‑63</span></div>
           <div class="phone-row"><span class="city">Бобруйск</span><span class="nums">ул. Шинная, 13 · +375 (29) 632‑12‑80, +375 (29) 327‑27‑84</span></div>
         </div>
         <p style="margin-top:18px;font-size:14.5px;color:var(--muted)">Email: <b style="color:var(--ink)">yogaallby@gmail.com</b></p>
