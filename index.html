@@ -577,7 +577,7 @@
         <p style="margin-top:18px;font-size:14.5px;color:var(--muted)">Email: <b style="color:var(--ink)">yogaallby@gmail.com</b></p>
       </div>
 
-      <form class="contact-card" id="leadForm">
+      <form class="contact-card" id="leadForm" action="https://formspree.io/yogaallby@gmail.com" method="POST">
         <div class="field">
           <label for="f-name">Имя</label>
           <input id="f-name" name="name" type="text" placeholder="Как можно к вам обратиться" required>
@@ -629,11 +629,28 @@
 <script>
   const form = document.getElementById('leadForm');
   const toast = document.getElementById('toast');
-  form.addEventListener('submit', (e)=>{
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        toast.textContent = 'Заявка отправлена — мы перезвоним';
+        form.reset();
+      } else {
+        toast.textContent = 'Не получилось отправить — позвоните нам по телефону';
+      }
+    } catch (err) {
+      toast.textContent = 'Не получилось отправить — позвоните нам по телефону';
+    }
     toast.classList.add('show');
-    form.reset();
-    setTimeout(()=>toast.classList.remove('show'), 2600);
+    submitBtn.disabled = false;
+    setTimeout(()=>toast.classList.remove('show'), 3200);
   });
 
   const burger = document.getElementById('burgerBtn');
