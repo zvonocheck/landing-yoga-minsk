@@ -122,13 +122,13 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
     background:linear-gradient(180deg, transparent 0%, var(--bg) 96%);
   }
   .hero-grid{
-    position:relative; z-index:1; display:grid;
-    grid-template-columns:1.1fr .9fr; grid-template-areas:"head head" "text art";
-    column-gap:56px; row-gap:34px;
+    position:relative; z-index:1; display:grid; justify-items:center;
+    grid-template-columns:1fr; grid-template-areas:"art" "head" "text";
+    row-gap:20px;
   }
-  .hero-head{ grid-area:head; text-align:center; }
-  .hero-text{ grid-area:text; align-self:center; text-align:center; }
-  .hero-art{ grid-area:art; align-self:center; }
+  .hero-head{ grid-area:head; text-align:center; width:100%; }
+  .hero-text{ grid-area:text; align-self:center; text-align:center; width:100%; }
+  .hero-art{ grid-area:art; align-self:center; width:100%; max-width:200px; }
   .hero h1{
     font-family:'Comfortaa',sans-serif; font-style:normal; font-size:clamp(28px,3.6vw,42px); font-weight:300;
     line-height:1.25; letter-spacing:0; color:var(--teal-deep); margin-block:16px 20px;
@@ -292,8 +292,7 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
     .nav-cta{ padding:7px 9px; font-size:10.5px; }
     .burger{ width:30px; height:30px; gap:4px; }
     .burger span{ width:14px; }
-    .hero-grid{ grid-template-columns:1fr; grid-template-areas:"head" "text" "art"; }
-    .hero-art{ max-width:320px; margin-inline:auto; }
+    .hero-art{ max-width:160px; }
     .philo-grid{ grid-template-columns:1fr; }
     .programs-grid{ grid-template-columns:repeat(2,1fr); }
     .price-grid{ grid-template-columns:repeat(2,1fr); }
@@ -350,6 +349,9 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
 <main id="top">
   <section class="hero">
     <div class="wrap hero-grid">
+      <div class="hero-art">
+        <div class="hero-logo-card"><img src="images/logo.png" alt="Школа йоги и гармоничного развития человека «Возрождение культуры»"></div>
+      </div>
       <div class="hero-head">
         <h1>Хочешь изменить мир —<br><em>измени себя!</em></h1>
       </div>
@@ -368,9 +370,6 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
           <div class="stat"><b class="text">Городские мероприятия</b><span>проведение и участие в мероприятиях за здоровый образ жизни</span></div>
         </div>
       </div>
-      <div class="hero-art">
-        <div class="hero-logo-card"><img src="images/logo.png" alt=""></div>
-      </div>
     </div>
   </section>
 
@@ -379,7 +378,7 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
       <div>
         <span class="eyebrow">Йога без ограничений</span>
         <h2 style="margin-top:12px;font-size:clamp(24px,2.8vw,32px)">в Минске, Орше и Бобруйске</h2>
-        <p style="color:var(--muted);margin-top:16px;font-size:15.5px">В основе мировоззрения Школы йоги и гармоничного развития человека «Возрождение культуры» лежит классический труд по йоге «Йога-сутра» Шримада Патанджали. Программа Школы рассчитана на 4 года обучения. Также есть формат «Группа здоровья» — занятия дважды в неделю для всех желающих поддерживать себя в форме.</p>
+        <p style="color:var(--muted);margin-top:16px;font-size:15.5px">В основе мировоззрения Школы йоги и гармоничного развития человека «Возрождение культуры» лежит классический труд по йоге «Йога-сутра» Шримада Патанджали. Программа Школы рассчитана на 4 года обучения, доступна в стандартном и углублённом форматах.</p>
         <p style="color:var(--muted);margin-top:14px;font-size:15.5px">Обучение строится по принципу «от простого к сложному».</p>
         <a class="btn btn-primary" href="#contact" style="margin-top:26px">Записаться на занятия</a>
       </div>
@@ -422,22 +421,22 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
         <div class="pcard">
           <h3>Йога для начинающих</h3>
           <p>Йога — это известный с давних времён способ гармоничного развития человека, дающий человеку силы и возможности реализоваться в жизни, независимо от места и времени, в которое он родился. Йога — природная наука, помогающая избавиться от многих современных заболеваний и дать возможность духовного гармоничного развития. Предлагаем групповые занятия йогой для любых возрастных категорий, для людей с любыми ограничениями и болезнями, беременным и женщинам после родов и т.д.</p>
-          <span class="tag">130 руб / мес →</span>
+          <span class="tag">150 руб / мес →</span>
         </div>
         <div class="pcard">
           <h3>Йога для беременных</h3>
           <p>Курс «Гармоничная беременность» построен так, чтобы помочь укрепить и настроить организм женщины. Поэтому, когда приходит время рожать, женщина к этому готова физически и психологически. А когда человек готов, то всё у него получается легко и естественно. Счастливая беременность и благополучные роды — это дают занятия йогой. Носить в себе два сердца — это честь, большое счастье и ответственность.</p>
-          <span class="tag">140 руб / мес →</span>
+          <span class="tag">150 руб / мес →</span>
         </div>
         <div class="pcard">
           <h3>Йога для детей</h3>
           <p>Физкультурно-оздоровительное направление йоги является основным в занятиях с детскими группами. Оно включает профилактику ОРЗ, сколиоза, плоскостопия, нарушений зрения, желудочно-кишечного тракта, а также укрепление всех систем организма и направлено на общеукрепляющее развитие детей...</p>
-          <span class="tag">60 руб / мес →</span>
+          <span class="tag">80 руб / мес →</span>
         </div>
         <div class="pcard">
           <h3>Йога для мамы и ребёнка</h3>
           <p>Курс «Йога для мамы с ребёнком» построен так, чтобы дать возможность женщинам с маленькими детьми заниматься оздоровлением своего организма и не в ущерб интересам ребёнка. Для мам проводится занятие, в это время дети рядом под присмотром второго инструктора, который организовывает занятия для детей в игровой форме. При желании обеих сторон (мамы и ребёнка) отводится время для совместных занятий (10–15 минут).</p>
-          <span class="tag">140 руб / мес →</span>
+          <span class="tag">150 руб / мес →</span>
         </div>
       </div>
     </div>
@@ -473,26 +472,27 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
       </div>
       <div class="schedule-grid">
         <div class="sched-row">
-          <div class="sched-name">Йога для начинающих<span>«Группа здоровья» №1</span></div>
-          <div class="sched-days">Понедельник, среда</div>
+          <div class="sched-name">Йога для начинающих<span>стандартный формат</span></div>
+          <div class="sched-days">Понедельник, четверг</div>
           <div class="sched-time">19:00–20:30</div>
         </div>
         <div class="sched-row">
-          <div class="sched-name">Йога для начинающих<span>«Группа здоровья» №2</span></div>
+          <div class="sched-name">Йога для начинающих<span>стандартный формат</span></div>
           <div class="sched-days">Вторник, пятница</div>
           <div class="sched-time">17:30–19:00</div>
         </div>
         <div class="sched-row">
-          <div class="sched-name">Классическая йога</div>
+          <div class="sched-name">Йога для начинающих<span>углублённый формат</span></div>
           <div class="sched-days">Среда</div>
           <div class="sched-time">19:00–21:30</div>
         </div>
         <div class="sched-row">
-          <div class="sched-name">Классическая йога</div>
+          <div class="sched-name">Йога для начинающих<span>углублённый формат</span></div>
           <div class="sched-days">Четверг</div>
-          <div class="sched-time">9:00–11:30</div>
+          <div class="sched-time">11:00–13:30</div>
         </div>
       </div>
+      <p style="color:var(--muted);margin-top:18px;font-size:14.5px;max-width:70ch">Стандартная программа (1 или 2 занятия в неделю) включает освоение гимнастик и комплексов, очистительных и оздоровительных процедур, практик сосредоточения и расслабления. Углублённая программа (1 занятие в неделю) дополнительно предполагает глубокую работу по изучению причинно-следственных связей — законов природы.</p>
     </div>
   </section>
 
@@ -506,8 +506,8 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
       <div class="price-grid">
         <div class="price-card featured">
           <h3>Йога для начинающих</h3>
-          <div class="amount">130 <sub>руб / мес</sub></div>
-          <p class="meta">10–12 часов · 1×2,5 ч или 2×1,5 ч в неделю</p>
+          <div class="amount">150 <sub>руб / мес</sub></div>
+          <p class="meta">льготная цена 120 руб — для пенсионеров и студентов</p>
           <hr>
           <ul>
             <li>Небольшие группы</li>
@@ -517,7 +517,7 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
         </div>
         <div class="price-card">
           <h3>Йога для беременных</h3>
-          <div class="amount">140 <sub>руб / мес</sub></div>
+          <div class="amount">150 <sub>руб / мес</sub></div>
           <p class="meta">8 часов · 1×2 ч или 2×1 ч в неделю</p>
           <hr>
           <ul>
@@ -528,7 +528,7 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
         </div>
         <div class="price-card">
           <h3>Йога для детей</h3>
-          <div class="amount">60 <sub>руб / мес</sub></div>
+          <div class="amount">80 <sub>руб / мес</sub></div>
           <p class="meta">4 часа · раз в неделю 1 ч 15 мин</p>
           <hr>
           <ul>
@@ -539,7 +539,7 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
         </div>
         <div class="price-card">
           <h3>Мама и ребёнок</h3>
-          <div class="amount">140 <sub>руб / мес</sub></div>
+          <div class="amount">150 <sub>руб / мес</sub></div>
           <p class="meta">8 часов · 1×2 ч или 2×1 ч в неделю</p>
           <hr>
           <ul>
@@ -581,7 +581,9 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
         <p style="margin-top:18px;font-size:14.5px;color:var(--muted)">Email: <b style="color:var(--ink)">yogaallby@gmail.com</b></p>
       </div>
 
-      <form class="contact-card" id="leadForm" action="https://formspree.io/yogaallby@gmail.com" method="POST">
+      <form class="contact-card" id="leadForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="a7e47763-d29c-4bd4-b0db-fc7b411e18ad">
+        <input type="hidden" name="subject" value="Новая заявка с сайта «Возрождение культуры»">
         <div class="field">
           <label for="f-name">Имя</label>
           <input id="f-name" name="name" type="text" placeholder="Как можно к вам обратиться" required>
@@ -643,7 +645,8 @@ src="https://www.facebook.com/tr?id=1639140380611600&ev=PageView&noscript=1"
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) {
+      const data = await res.json().catch(()=>null);
+      if (res.ok && data && data.success) {
         toast.textContent = 'Заявка отправлена — мы перезвоним';
         form.reset();
       } else {
